@@ -31,7 +31,6 @@ function createUser(array $data)
             $data['token'],
             $data['role_id'],
 
-
         );
         
         /* Exécution de la requête */
