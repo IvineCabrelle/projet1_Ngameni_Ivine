@@ -70,25 +70,29 @@ function pwdLenghtValidation(string $pwd):array
 }
 // faudrait adapter la validation du nom face au contenu
 function firstNameValidation($fname) {
-             return [
-                'isValid' => true,
-                'msg' => ''
-             ];
-
-    if (preg_match('/^[a-zA-Z]+$/',$fname)) {
-            
-        if(strlen($fname)<2){
-            return [
-                        'isValid' => false,
-                        'msg' => "Format de first name invalide",
-            ];
-
-        }
+    
+    if(empty($fname)){        
+        return [
+            'isValid' => false,
+            'msg' => "Doit etre rempli",
+        ];
     }
+    
+    if(strlen($fname)<2){
+        return [
+            'isValid' => false,
+            'msg' => "Format de first name invalide",
+        ];
+        
+    }
+    
+    return [
+       'isValid' => true,
+       'msg' => ''
+    ];
 }
 function lastnameValidation($lname){
     // validation du last name
-    if (! preg_match ('/^[a-zA-z]*$/', $lname) ) {
         
         if(strlen($lname)<2){
         return [
@@ -96,13 +100,14 @@ function lastnameValidation($lname){
             'msg' => 'format de last name invalide'
         ];
         
-        } else {
+        } 
+
             return [
                 'isValid' => true,
                 'msg' => ''
             ];
-        }    
-    }
+          
+    
 }
 
 ?>
