@@ -158,10 +158,10 @@
       <div class="collapse navbar-collapse" id="navbarCollapse">
         <ul class="navbar-nav me-auto mb-2 mb-md-0">
           <li class="nav-item">
-            <a class="nav-link active" aria-current="page" href="../gestion de produits/ModifierProduits.php">Modifier les produits</a>
+            <a class="nav-link active" aria-current="page" href="ModifierProduits.php">Modifier les produits</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="../gestion de produits/AjouterProduits.php">Ajouter les produits</a>
+            <a class="nav-link" href="AjouterProduits.php">Ajouter les produits</a>
           </li>
           
         </ul>
