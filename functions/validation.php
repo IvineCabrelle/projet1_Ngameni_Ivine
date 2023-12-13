@@ -1,5 +1,5 @@
 <?php
-
+// Validation du signUp
 function usernameIsValid(string $username): array
 {
     $result = [
@@ -30,6 +30,7 @@ function usernameIsValid(string $username): array
     }
     return $result;
 }
+// validation de l'email
 
 function emailIsValid( string $email):array
 {
@@ -109,5 +110,34 @@ function lastnameValidation($lname){
           
     
 }
+// function pour valiser l'user_name du login
+function usernameValidation($data){
+    $userInDB=getUserByUsername($data);
+    $result=[
+        'isValid'=>true,
+        'msg' => "Ce user_name n'existe pas dans notre base de données"
+
+    ];
+    if($userInDB){
+        $result=[
+            'isValid'=>true,
+            'msg' => ''
+    
+        ];
+    }
+    else{
+        $result=[
+            'isValid'=>false,
+            'msg' => "Ce user_name n'existe pas dans notre base de données"
+    
+        ];
+    }
+    return $result;
+
+}
+
+
+
+
 
 ?>

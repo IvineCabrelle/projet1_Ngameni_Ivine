@@ -1,4 +1,8 @@
 <?php
+
+ $token = hash('sha256', random_bytes(32));
+ echo '</br></br>Mon token : </br>';
+
 function create($data){
     var_dump('création de nouveau utilisateur');
     global $conn;
@@ -42,7 +46,6 @@ function createUser(array $data)
     
 }
 
-
 function getAllUsers()
 {
     global $conn;
@@ -58,21 +61,11 @@ function getAllUsers()
     return $data;
 }
 
-function getUserById(int $id)
-{
-    global $conn;
-    $result = mysqli_query($conn, "SELECT * FROM user WHERE id = " . $id);
-
-    $data = mysqli_fetch_assoc($result);
-
-    return $data;
-}
-
-function getUserByUsername(string $user_name)
+function getUserByUsername(string $username)
 {
     global $conn;
 
-    $query = "SELECT * FROM user WHERE user.user_name = '" . $user_name . "';";
+    $query = "SELECT * FROM user WHERE user.user_name = '" . $username . "';";
 
     $result = mysqli_query($conn, $query);
 
@@ -81,36 +74,85 @@ function getUserByUsername(string $user_name)
     return $data;
 }
 
+ function changerToken($data){
+    global $conn;
+     $query= 'UPDATE user set token =? where user.id =?;';
+     if($stmt= mysqli_prepare($conn,$query)){
+         mysqli_stmt_bind_param(
+             $stmt,
+             'si',
+             $data['id'],
+             $data['token'],
+         );
+        $result=mysqli_stmt_execute($stmt);
+     }
+ }
 
+function getUserById(int $id)
+{
+    global $conn;
+    $result = mysqli_query($conn, "SELECT * FROM user WHERE id = " . $id);
+
+    // avec fetch row : tableau indexé
+    $data = mysqli_fetch_assoc($result);
+
+    return $data;
+}
+
+ //Get user by Name
+ 
+function getUserByName(string $username)
+{
+    global $conn;
+
+    $query = "SELECT * FROM user WHERE user.$username = '" . $username."';";
+
+    var_dump($query);
+    $result = mysqli_query($conn, $query);
+
+        // avec fetch row : tableau indexé
+        $data = mysqli_fetch_assoc($result);
+        return $data;
+}
+
+// Update user
+ 
 function updateUser(array $data)
 {
     global $conn;
 
-    $query = "UPDATE user SET user_name = ?, email = ?, pwd = ?, fname= ?, lname= ?
+    $query = "UPDATE user SET user_name = ?, email = ?, pwd = ?, fname=?, lname=?, billing_address_id=?,shipping_address_id=?, token=?, role_id=?
             WHERE user.id = ?;";
 
     if ($stmt = mysqli_prepare($conn, $query)) {
 
         mysqli_stmt_bind_param(
             $stmt,
-            "sssss",
+            "sssssiisii",
             $data['user_name'],
             $data['email'],
             $data['pwd'],
             $data['fname'],
             $data['lname'],
+            $data['billing_address_id'],
+            $data['shipping_address_id'],
+            $data['token'],
+            $data['role_id'],
             $data['id'],
         );
 
         /* Exécution de la requête */
         $result = mysqli_stmt_execute($stmt);
     }
-}
+} 
 
+//Delete user
+ 
 function deleteUser(int $id)
 {
     global $conn;
 
+    /* Query  permettant de delete un user en ayant juste son id */
     $query = "DELETE FROM user
                 WHERE user.id = ?;";
 
@@ -122,6 +164,94 @@ function deleteUser(int $id)
             $id,
         );
 
+        /* Exécution de la requête */
         $result = mysqli_stmt_execute($stmt);
     }
 }
+
+
+//Ajouter un produit dans la base de données
+
+
+function createProduct(array $data)
+{
+    var_dump('création de nouveau utilisateur dans user');
+    global $conn;
+    $query = "INSERT INTO product VALUES (Null, ?, ?, ?,?,?);";
+    $stmt = mysqli_prepare($conn, $query);
+    var_dump($stmt);
+    
+    printf("Error message: %s\n", mysqli_error($conn));    
+    
+    if ($stmt = mysqli_prepare($conn, $query)) {
+        
+        mysqli_stmt_bind_param(
+            $stmt,
+            "sidss",
+            $data['name'],
+            $data['quantity'],
+            $data['price'],
+            $data['img_url'],
+            $data['description'],
+
+        );
+        
+        /* Exécution de la requête */
+        $result = mysqli_stmt_execute($stmt);
+        var_dump($result);
+        
+    
+    }
+    
+}
+function deleteProduct($id)
+{
+    global $conn;
+
+    /* Query permettant de delete un produit en ayant juste son id */
+    $query = "DELETE FROM product
+                WHERE product.id = ?;";
+
+    if ($stmt = mysqli_prepare($conn, $query)) {
+
+        mysqli_stmt_bind_param(
+            $stmt,
+            "i",
+            $id,
+        );
+
+        /* Exécution de la requête */
+        $result = mysqli_stmt_execute($stmt);
+    }
+}
+echo "Suppression de produit réussie";
+var_dump($result);
+
+function updateProduct(array $data){
+    global $conn;
+
+    $query = "UPDATE product  SET name = ?, quantity = ?, price= ?, img_url=?, description=?,
+            WHERE product.id = ?;";
+
+    if ($stmt = mysqli_prepare($conn, $query)) {
+
+        mysqli_stmt_bind_param(
+            $stmt,
+            "sidssi",
+            $data['name'],
+            $data['quantity'],
+            $data['price'],
+            $data['img_url'],
+            $data['description'],
+            $data['id'],
+        );
+
+        /* Exécution de la requête */
+        $result = mysqli_stmt_execute($stmt);
+    }
+    echo"Produit modifié avec succès";
+    var_dump($result);
+
+}
+
+
