@@ -8,9 +8,6 @@ require_once '../functions/functions.php';
 require_once '../utils/connexion.php';
 
 var_dump($_POST);
-
-
-
 ?>
 <form method='post' action='accueil.php'>
 
@@ -101,5 +98,5 @@ if (isset($_POST)) {
 
 
     ?>
-    <a href='../index.php'>Retour<
+    <a href='../index.php'>Retour<a>
 

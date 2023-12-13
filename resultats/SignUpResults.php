@@ -73,6 +73,11 @@ if (isset($_POST)) {
             
         ];
         $newUser = createUser($data);
+        //redirect vers login
+        $url = '../pages/login.php';
+        header('Location: ' . $url);
+        
+
     } else {
 
         // redirect to signup et donner les messages d'erreur si la validation n'est pas bonne
