@@ -44,12 +44,12 @@ if (isset($_SESSION['signup_form']['lname'])) {
         <p style="color: red; font-size: 0.8rem;"><?php echo isset($_SESSION['signup_errors']['email'])? $_SESSION['signup_errors']['email'] : '' ?></p><br><br>
         
         <label for="pwd"> <b> Mot de passe</b></label>
-        <input type="text" name="pwd" id="pwd" placeholder=" Entrez votre pwd">
+        <input type="pwd" name="pwd" id="pwd" placeholder=" Entrez votre pwd">
         <p style="color: red; font-size: 0.8rem;"><?php echo isset($_SESSION['signup_errors']['pwd'])? $_SESSION['signup_errors']['pwd'] : '' ?></p><br><br>
         
         <label for="fname"><b> First name</b> </label>
         <input type="text" name="fname" id="fname" placeholder=" Entrez votre first name"><br><br>
-        <p style="color: red; font-size: 0.8rem;"><?php echo isset($_SESSION['signup_errors']['fname'])? $_SESSION['signup_errors']['fname'] : '' ?></p><br><br>
+        <p style="color: red; font-size: 0.8rem;"><?php echo isset($_SESSION['signup_er rors']['fname'])? $_SESSION['signup_errors']['fname'] : '' ?></p><br><br>
         
         <label for="lname"><b> Last name </b></label>
         <input type="text" name="lname" id="lname" placeholder=" Entrez votre last name"><br><br>
