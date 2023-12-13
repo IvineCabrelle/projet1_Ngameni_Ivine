@@ -2,11 +2,20 @@
 <h2>Login result</h2>
 <?php
 
+require_once '../functions/validation.php';
 require_once '../functions/userCrud.php';
 require_once '../functions/functions.php';
 require_once '../utils/connexion.php';
 
 var_dump($_POST);
+
+
+
+?>
+<form method='post' action='accueil.php'>
+
+</form>
+<?php
 
 //Authentification
 
@@ -22,7 +31,6 @@ if (isset($_POST)) {
         header('Location: ' . $url);
     }
 
-    
     //si l'utilisateur exist dans la DB
     if ($userData) {
         // comparer pwd avec DB (version encodée)
@@ -30,17 +38,14 @@ if (isset($_POST)) {
         if ($userData['pwd'] == $enteredPwdEncoded) {
             //traitement si mdp correct
             //créeer un token
-            
+            $token = hash('sha256', random_bytes(32));
+            echo '</br></br>Mon token : </br>';
             //enregistrer le token en Session et dans la DB
 
             echo "C'est le bon mdp ";
-        }else {
-            //traitement si mdp incorrect
-            //compter lenombre d'erreur et bloquer l'IP apres 3 erreur
-            //Les erreurs peuvent etre dans une Session
-            //Proposer de réinitialiser le mdp
-            //Créer un msg d'erreur
-            //renvoyer sur la page login
+
+        }
+        else {
             echo "C'est pas le bon mot de passe  ";        }
     }
 } else {
@@ -48,3 +53,53 @@ if (isset($_POST)) {
     $url = '../pages/login.php';
     header('Location: ' . $url);
 }
+
+    if($userData){
+    $enteredPwdEncoded = encodePwd($_POST['pwd']);  
+    $data=[
+            'id'=>$userData['id'], 
+        ' token'=>$token
+    ];
+
+        // ajout dans la base de données
+        $AjoutToken=ChangerToken($data);
+        if($userData['pwd']==$enteredPwdEncoded){
+            $_SESSION['auth']=[
+            'id'=>$userData['id'],
+            'role_id'=>$userData['role_id'],
+            'token'=>$token
+            ];
+            var_dump("$token");
+
+        if(($_SESSION ['auth']['role_id']==2) or ($_SESSION ['auth']['role_id']==3)){
+                $url = '../accueil/accueil.php';
+                header('Location: ' . $url);
+            }
+
+        }else{
+
+            $_SESSION['login_errors']=[
+                'error_pwd'=>true
+            ];
+           
+            header('location:' .$url);
+        }
+                
+                
+        }
+        else {
+            $_SESSION['login_errors']=[
+                'errors_username'=>true
+
+            ];
+            
+            header('location:'.$url);
+        }
+
+    
+?>
+
+
+    ?>
+    <a href='../index.php'>Retour<
+
