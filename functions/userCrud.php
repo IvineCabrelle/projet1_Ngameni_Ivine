@@ -210,7 +210,7 @@ function deleteProduct($id)
 
     /* Query permettant de delete un produit en ayant juste son id */
     $query = "DELETE FROM product
-                WHERE product.id = ?;";
+                WHERE id = ?;";
 
     if ($stmt = mysqli_prepare($conn, $query)) {
 
@@ -224,34 +224,34 @@ function deleteProduct($id)
         $result = mysqli_stmt_execute($stmt);
     }
 }
-echo "Suppression de produit réussie";
-var_dump($result);
+ echo "Suppression de produit réussie";
+ var_dump($result);
 
-function updateProduct(array $data){
-    global $conn;
+ function updateProduct(array $data){
+     global $conn;
 
-    $query = "UPDATE product  SET name = ?, quantity = ?, price= ?, img_url=?, description=?,
-            WHERE product.id = ?;";
+     $query = "UPDATE product  SET name = ?, quantity = ?, price= ?, img_url=?, description=?,
+             WHERE id = ?;";
 
-    if ($stmt = mysqli_prepare($conn, $query)) {
+     if ($stmt = mysqli_prepare($conn, $query)) {
 
-        mysqli_stmt_bind_param(
-            $stmt,
-            "sidssi",
-            $data['name'],
-            $data['quantity'],
-            $data['price'],
-            $data['img_url'],
+         mysqli_stmt_bind_param(
+             $stmt,
+             "sidssi",
+             $data['name'],
+             $data['quantity'],
+             $data['price'],
+             $data['img_url'],
             $data['description'],
-            $data['id'],
-        );
+             $data['id'],
+         );
 
-        /* Exécution de la requête */
+         /* Exécution de la requête */
         $result = mysqli_stmt_execute($stmt);
     }
-    echo"Produit modifié avec succès";
-    var_dump($result);
+     echo"Produit modifié avec succès";
+     var_dump($result);
 
-}
+ }
 
 
