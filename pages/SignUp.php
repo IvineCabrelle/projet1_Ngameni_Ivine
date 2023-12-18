@@ -56,6 +56,7 @@ if (isset($_SESSION['signup_form']['lname'])) {
         <p style="color: red; font-size: 0.8rem;"><?php echo isset($_SESSION['signup_errors']['lname'])? $_SESSION['signup_errors']['lname'] : '' ?></p><br><br>
         
       <button type ="submit" name="Soumettre">Soumettre</button>
+    <a href="../forms/form1.php">Ajouter vos adresses</a>
     </fieldset>
     </form>
 </body>
