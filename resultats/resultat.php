@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" type="text/css" href="../styleResult.css">
+    <link rel="stylesheet" type="text/css" href="../styles/styleResult.css">
     <title>Confirmation d'Adresse</title>
 </head>
 <body>
@@ -27,14 +27,14 @@
         $_SESSION["formData"]["city$i"] = $_POST["city$i"];
         $_SESSION["formData"]["province$i"] = $_POST["province$i"];
         $_SESSION["formData"]["zip_code$i"] = $_POST["zip_code$i"];
-        $_SESSION["formData"]["coundry$i"] = $_POST["coundry$i"];
+        $_SESSION["formData"]["country$i"] = $_POST["country$i"];
 
         // Validation des adresses
         $street_nameIsValid = street_nameIsValid($_POST["street_name$i"]);
         $zip_codeIsValid = zip_codeIsValid($_POST["zip_code$i"]);
         $provinceIsValid=provinceIsValid($_POST["province$i"]);
         $countryIsValid=countryIsValid($_POST["country$i"]);
-        $addressIsValid = addressIsValid($_POST["coundry$i"], $_POST["zip_code$i"]);
+        $addressIsValid = addressIsValid($_POST["country$i"], $_POST["zip_code$i"]);
         
         if (!$street_nameIsValid["isValid"] || !$zip_codeIsValid["isValid"] || !$addressIsValid["isValid"]) {
             $allAddressesValid = false;

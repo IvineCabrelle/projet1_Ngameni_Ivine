@@ -3,22 +3,22 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" type="text/css" href="../styleResultVal.css">
+    <link rel="stylesheet" type="text/css" href="../styles/styleResultVal.css">
     <title>Confirmation d'Adresse</title>
 </head>
 <body>
 
 <div class="container">
     <?php
-    require_once('../config/connexion.php');
-    require_once('../functions/validations.php');
+    require_once('../utils/connexion.php');
+    require_once('../functions/validation.php');
     require_once("../functions/addressCrud.php");
     session_start();
 
     $addressNB = isset($_SESSION["number1"]["addressNB"]) ? $_SESSION["number1"]["addressNB"] : 0;
     for ($i = 1; $i <= $addressNB; $i++) {
         $newAddressData = [
-            "street_name" => $_SESSION["formData"]["street$i"],
+            "street_name" => $_SESSION["formData"]["street_name$i"],
             "street_nb" => $_SESSION["formData"]["street_nb$i"],
             "city" => $_SESSION["formData"]["city$i"],
             "province" => $_SESSION["formData"]["province$i"],
@@ -38,6 +38,8 @@
 
     <p>Merci d'avoir utilisé mon site. Si vous souhaitez ajouter plus d'adresses, cliquez sur le lien ci-dessous.</p>
     <a href="../forms/form1.php" class="return-link">Retour</a>
+    <p>Merci d'avoir utilisé mon site. Si vous souhaitez ajouter plus d'adresses, cliquez ici pour vous connecter.</p>
+    <a href="../pages/login.php" class="return-link">Retour</a>
 </div>
 
 </body>
