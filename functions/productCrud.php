@@ -51,15 +51,15 @@ function deleteProduct($id)
         /* Exécution de la requête */
         $result = mysqli_stmt_execute($stmt);
     }
+    echo "Suppression de produit réussie";
+    //var_dump($result);
 }
- echo "Suppression de produit réussie";
- var_dump($result);
 
  function updateProduct(array $data){
      global $conn;
 
-     $query = "UPDATE product  SET name = ?, quantity = ?, price= ?, img_url=?, description=?,
-             WHERE id = ?;";
+     $query = "UPDATE `product`  SET `name` = ?, `quantity` = ?, `price` = ?, `img_url` = ?, `description` = ?
+             WHERE `product`.`id` = ?;";
 
      if ($stmt = mysqli_prepare($conn, $query)) {
 
@@ -83,7 +83,7 @@ function deleteProduct($id)
  function getProductByName( $name)
  {
      global $conn;  
- // Todo : changer pour requete preparee
+    // Todo : changer pour requete preparee
      $query = "SELECT * FROM product WHERE name = '$name' ;";
      $result = mysqli_query($conn, $query);
      // avec fetch row : tableau indexé
@@ -91,7 +91,16 @@ function deleteProduct($id)
      return $data;
  }
 
-
+ function getProductById( $id)
+ {
+     global $conn;  
+    // Todo : changer pour requete preparee
+     $query = "SELECT * FROM product WHERE id = '$id' ;";
+     $result = mysqli_query($conn, $query);
+     // avec fetch row : tableau indexé
+     $data = mysqli_fetch_all($result);
+     return $data;
+ }
 
 
 
