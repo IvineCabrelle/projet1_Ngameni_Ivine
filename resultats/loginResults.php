@@ -89,7 +89,7 @@ if (isset($_POST)) {
                 'errors_username'=>true
 
             ];
-            
+            $url = '../accueil/accueil.php';
             header('location:'.$url);
         }
 

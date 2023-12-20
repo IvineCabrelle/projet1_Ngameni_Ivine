@@ -39,7 +39,7 @@
     <p>Merci d'avoir utilisé mon site. Si vous souhaitez ajouter plus d'adresses, cliquez sur le lien ci-dessous.</p>
     <a href="../forms/form1.php" class="return-link">Retour</a>
     <p>Merci d'avoir utilisé mon site. Si vous souhaitez ajouter plus d'adresses, cliquez ici pour vous connecter.</p>
-    <a href="../pages/login.php" class="return-link">Retour</a>
+    <a href="../pages/login.php" class="return-link">Login</a>
 </div>
 
 </body>
