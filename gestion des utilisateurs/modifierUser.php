@@ -15,8 +15,8 @@ if(isset($_POST)){
                 'user_name'=>$_POST['user_name'],
                 'role_id'=>$_POST['role_id']
             ];
-
-            $updateRole=deleteUser($_POST['user_name']);
+            
+            $updateRole=updateRoleId($data);
 
             $url='../accueil/accueil.php';
             header("location" .$url);
