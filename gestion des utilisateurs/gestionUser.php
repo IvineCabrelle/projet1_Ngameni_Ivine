@@ -1,6 +1,9 @@
+<?php
+session_start();
+?>
 
 <!doctype html>
-<html lang="en" data-bs-theme="auto">
+<html lang="en" class="h-100" data-bs-theme="auto">
   <head><script src="/docs/5.3/assets/js/color-modes.js"></script>
 
     <meta charset="utf-8">
@@ -8,10 +11,27 @@
     <meta name="description" content="">
     <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
     <meta name="generator" content="Hugo 0.118.2">
-    <title>Carousel Template · Bootstrap v5.3</title>
+    
+    <link rel="canonical" href="https://getbootstrap.com/docs/5.3/examples/cover/">
 
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+    
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@docsearch/css@3">
+
+<link href="/docs/5.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+
+    <!-- Favicons -->
+<link rel="apple-touch-icon" href="/docs/5.3/assets/img/favicons/apple-touch-icon.png" sizes="180x180">
+<link rel="icon" href="/docs/5.3/assets/img/favicons/favicon-32x32.png" sizes="32x32" type="image/png">
+<link rel="icon" href="/docs/5.3/assets/img/favicons/favicon-16x16.png" sizes="16x16" type="image/png">
+<link rel="manifest" href="/docs/5.3/assets/img/favicons/manifest.json">
+<link rel="mask-icon" href="/docs/5.3/assets/img/favicons/safari-pinned-tab.svg" color="#712cf9">
+<link rel="icon" href="/docs/5.3/assets/img/favicons/favicon.ico">
+<meta name="theme-color" content="#712cf9">
+
+
     <style>
       .bd-placeholder-img {
         font-size: 1.125rem;
@@ -30,7 +50,7 @@
       .b-example-divider {
         width: 100%;
         height: 3rem;
-        background-color: rgba(0, 0, 0, .1);
+        
         border: solid rgba(0, 0, 0, .15);
         border-width: 1px 0;
         box-shadow: inset 0 .5em 1.5em rgba(0, 0, 0, .1), inset 0 .125em .5em rgba(0, 0, 0, .15);
@@ -93,9 +113,9 @@
 
     
     <!-- Custom styles for this template -->
-    <link href="carousel.css" rel="stylesheet">
+    <link href="cover.css" rel="stylesheet">
   </head>
-  <body>
+  <body class="d-flex h-100 text-center text-bg-dark">
     <svg xmlns="http://www.w3.org/2000/svg" class="d-none">
       <symbol id="check2" viewBox="0 0 16 16">
         <path d="M13.854 3.646a.5.5 0 0 1 0 .708l-7 7a.5.5 0 0 1-.708 0l-3.5-3.5a.5.5 0 1 1 .708-.708L6.5 10.293l6.646-6.647a.5.5 0 0 1 .708 0z"/>
@@ -148,110 +168,87 @@
     </div>
 
     
-<header data-bs-theme="dark">
-  <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
-    <div class="container-fluid">
-      <a class="navbar-brand" href="../accueil/accueil.php">home</a>
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-      <div class="collapse navbar-collapse" id="navbarCollapse">
-        <ul class="navbar-nav me-auto mb-2 mb-md-0">
-          <li class="nav-item">
-            <a class="nav-link active" aria-current="page" href="ModifierProduits.php">Modifier les produits</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="AjouterProduits.php">Ajouter les produits</a>
-          </li>
-          
-        </ul>
+<div class="cover-container d-flex w-100 h-100 p-3 mx-auto flex-column">
+  <header class="mb-auto">
+    <div>
+      <h3 class="float-md-start mb-0">Cover</h3>
+      <nav class="nav nav-masthead justify-content-center float-md-end">
+        <a class="nav-link fw-bold py-1 px-0 active" aria-current="page" href="../accueil/accueil.php">Home</a>
+        <a class="nav-link fw-bold py-1 px-0" href="../gestion des utilisateurs/gestionUser.php">gestionUser</a>
+        <a class="nav-link fw-bold py-1 px-0" href="#">Contact</a>
+      </nav>
+      <body>
+        <?php
+        require_once "../functions/userCrud.php";
+        require_once "../functions/functions.php";
+        require_once "../utils/connexion.php";
        
-      </div>
-    </div>
-  </nav>
-</header>
+        if(isset($_SESSION['auth'])){
+          var_dump(intval($_SESSION['auth']['id']));
+            $userConnected=getUserById($_SESSION['auth']['id']);
+            $userbyName=getUserByUsername($userConnected['user_name']);
+            if($_SESSION['auth']['role_id']=1){
+                $users=getAllUsers();
+                //var_dump($users);
+            }
+            else{
+                //$users=getAllClient();
+            }
+        
+        ?>
+    <h1>Gestions des utilisateurs</h1>
+    <form action="modifierUser.php" method="post" class="form">
+        <fieldset><legend>Gestion des utilisateurs</legend>
+        <label form="user_name">Nom de l'utilisateur suivi du role:</label>
+    <select name="user_name" id="user_name">
+        <?php
+        foreach($users as $user=>$name){
+            ?>
+            <option><?php
+            echo $name["user_name"];
+            ?>
+            </option>
+            <?php
+        }
+        ?>
+        <br>
+    </select>
+    <?php if($_SESSION['auth']['role_id']==1){?>
+        <select name="role_id" id="role">
+            <option>1</option>
+            <option>2</option>
+            <option>3</option>
+        </select>
+        <?php }
+        else{
+            ?><select name="role_id">
+                <option>2</option>
+                <option>3</option>
+        </select>
+           <?php
+        
+        } 
+        
+        ?>
+        <p> le superadmin est 1, le client est 3 et l'admin est 2</p>
+        <input type="submit" value="changer">
 
-<div id="Home" class="carousel slide mb-6" data-bs-ride="Home">
-    <div class="carousel-indicators">
-      <button type="button" data-bs-target="#myCarousel" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
-      <button type="button" data-bs-target="#myCarousel" data-bs-slide-to="1" aria-label="Slide 2"></button>
-      <button type="button" data-bs-target="#myCarousel" data-bs-slide-to="2" aria-label="Slide 3"></button>
-    </div>
-    <div class="carousel-inner">
-      <div class="carousel-item active">
-        <svg class="bd-placeholder-img" width="100%" height="100%" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" preserveAspectRatio="xMidYMid slice" focusable="false"><rect width="100%" height="100%" fill="var(--bs-secondary-color)"/></svg>
-        <div class="container">
-          <div class="carousel-caption text-start">
-            <h1>Example headline.</h1>
-            <p class="opacity-75">Some representative placeholder content for the first slide of the carousel.</p>
-            <p><a class="btn btn-lg btn-primary" href="#">Sign up today</a></p>
-          </div>
-        </div>
-      </div>
-      <div class="carousel-item">
-        <svg class="bd-placeholder-img" width="100%" height="100%" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" preserveAspectRatio="xMidYMid slice" focusable="false"><rect width="100%" height="100%" fill="var(--bs-secondary-color)"/></svg>
-        <div class="container">
-          <div class="carousel-caption">
-            <h1>Another example headline.</h1>
-            <p>Some representative placeholder content for the second slide of the carousel.</p>
-            <p><a class="btn btn-lg btn-primary" href="#">Learn more</a></p>
-          </div>
-        </div>
-      </div>
-      <div class="carousel-item">
-        <svg class="bd-placeholder-img" width="100%" height="100%" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" preserveAspectRatio="xMidYMid slice" focusable="false"><rect width="100%" height="100%" fill="var(--bs-secondary-color)"/></svg>
-        <div class="container">
-          <div class="carousel-caption text-end">
-            <h1>One more for good measure.</h1>
-            <p>Some representative placeholder content for the third slide of this carousel.</p>
-            <p><a class="btn btn-lg btn-primary" href="#">Browse gallery</a></p>
-          </div>
-        </div>
-      </div>
-    </div>
-    <button class="carousel-control-prev" type="button" data-bs-target="#myCarousel" data-bs-slide="prev">
-      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-      <span class="visually-hidden">Previous</span>
-    </button>
-    <button class="carousel-control-next" type="button" data-bs-target="#myCarousel" data-bs-slide="next">
-      <span class="carousel-control-next-icon" aria-hidden="true"></span>
-      <span class="visually-hidden">Next</span>
-    </button>
-  </div>
-<form method="post" action="../resultats/ProduitsResults.php">
-  <div class="mb-3">
-    <label for="name" class="form-label">name</label>
-    <input type="text" class="form-control" id="name" name="name" aria-describedby="emailHelp">
-    
-  </div>
-  <div class="mb-3">
-    <label for="quantity" class="form-label">quantite</label>
-    <input type="text" class="form-control" id="quantity" name="quantity">
-  </div>
-  <div class="mb-3">
-    <label for="price" class="form-label">prix</label>
-    <input type="text" class="form-control" id="price" name="price">
-  </div>
-  <div class="mb-3">
-    <label for="img_url" class="form-label">url de l image</label>
-    <input type="text" class="form-control" id="img_url" name="img_url">
-  </div>
-  <div class="mb-3">
-    <label for="description" class="form-label">description</label>
-    <input type="text" class="form-control" id="description" name="description">
-  </div>
-  <button type="submit" class="btn btn-primary">Supprimer le produit</button>
-</form>
-
+        </fieldset>
+        <legend>
+         </form>
+         <?php 
+         }
+    ?>
+   <br><br>
+   <form class="form" action="./deleteUser.php" method="post" >
+    <label for="user_name">Nom client</label>
+    <input type="text" id="name" name="user_name"><br></br>
+    <input type="submit" value="supprimer">
    
-
-
+    </div>
+  </header>
+  
+  <footer class="mt-auto text-white-50">
     
-  
-</main>
-
-  
-
-  </body>
-
-<script src="/docs/5.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+    </body>
+</html>
