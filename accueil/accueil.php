@@ -134,7 +134,7 @@ session_start();
 <header data-bs-theme="dark">
   <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
     <div class="container-fluid">
-      <a class="navbar-brand" href="../accueil/accueil.php">Home</a>
+      <a class="navbar-brand" href="../pages/login.php">Home</a>
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
@@ -148,7 +148,7 @@ session_start();
           </li>
           <li><a href="../deconnection/deconnection.php" class="text-white"><button type="button" class="btn btn-danger">Deconnexion</button></a></li>
           <li class="nav-item">
-            <a class="nav-link disabled" aria-disabled="true">Disabled</a>
+            <a class="navbar-brand" href="../Profils/ModifierProfilsClients.php">Profils</a>
           </li>
         </ul>
         <form class="d-flex" role="search">
@@ -273,3 +273,8 @@ session_start();
   </footer>
 </main>
 <script src="/docs/5.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+
+
+
+</body>
+</html>
