@@ -10,7 +10,7 @@ session_start();
   <meta name="viewport" content="width=device=width, initial-scale=1.0" />
   <title>Boutique</title>
   <link rel="stylesheet" href="../styles/stylePanier.css" />
-  <a href="../accueil/accueil.php" class="link">Retour</a>
+  <a href="../accueil/accueilClients.php" class="link">Retour</a>
 </head>
 <body>
     <?php // Afficher le nombre de produit dans le panier ?>
@@ -40,4 +40,3 @@ session_start();
   </section>
 </body>
 </html>
-<?php // ?>
