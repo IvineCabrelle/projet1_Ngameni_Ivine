@@ -91,7 +91,8 @@ function getUserByUsername(string $username)
 function getUserById(int $id)
 {
     global $conn;
-    $result = mysqli_query($conn, "SELECT * FROM user WHERE id = " . $id);
+    $query="SELECT * FROM user WHERE user.id = " . $id.";";
+    $result = mysqli_query($conn,$query);
 
     // avec fetch row : tableau indexé
     $data = mysqli_fetch_assoc($result);
@@ -121,23 +122,20 @@ function updateUser(array $data)
 {
     global $conn;
 
-    $query = "UPDATE user SET user_name = ?, email = ?, pwd = ?, fname=?, lname=?, billing_address_id=?,shipping_address_id=?, token=?, role_id=?
+    $query = "UPDATE user SET user_name = ?, email = ?, pwd = ?, fname=?, lname=?
             WHERE user.id = ?;";
 
     if ($stmt = mysqli_prepare($conn, $query)) {
 
         mysqli_stmt_bind_param(
             $stmt,
-            "sssssiisii",
+            "sssssi",
             $data['user_name'],
             $data['email'],
             $data['pwd'],
             $data['fname'],
             $data['lname'],
-            $data['billing_address_id'],
-            $data['shipping_address_id'],
-            $data['token'],
-            $data['role_id'],
+            
             $data['id'],
         );
 
@@ -148,26 +146,27 @@ function updateUser(array $data)
 
 //Delete user
  
-function deleteUser(int $id)
+function deleteUser(string $username)
 {
     global $conn;
 
     /* Query  permettant de delete un user en ayant juste son id */
     $query = "DELETE FROM user
-                WHERE user.id = ?;";
+                WHERE user.user_name = ?;";
 
     if ($stmt = mysqli_prepare($conn, $query)) {
 
         mysqli_stmt_bind_param(
             $stmt,
-            "i",
-            $id,
+            "s",
+            $username,
         );
 
         /* Exécution de la requête */
         $result = mysqli_stmt_execute($stmt);
     }
 }
+// Modifier le role id d'un utilisateur en fonction de son role
  function updateRoleId(array $data){
      global $conn;
      $query="UPDATE user SET role_id = ? where user.user_name=?;";
@@ -182,5 +181,30 @@ function deleteUser(int $id)
          return $result;
      }
 }
+// modifier les informations d'un administrateur
+function updateUserByAdmin($data){
+    global $conn;
+    $query= "UPDATE user SET email=?,fname=?,lname=?,role_id=? WHERE user_name=?";
+    if($stmt=mysqli_prepare($conn, $query)) {
+        //lecture des marqueurs 
+        mysqli_stmt_bind_param($stmt,"sssis", 
+        $data["email"],
+        $data["fname"],
+        $data['lname'],
+        $data["role_id"],
+        $data["user_name"] );
+    
+    // execution de la requete 
+    $result=mysqli_stmt_execute($stmt);
+    echo "<br>";
+    echo "modification reussie";
+    var_dump($result);
+    echo "<br>";
+    }
+    
+    return $result;
+    
+}
+
 
 

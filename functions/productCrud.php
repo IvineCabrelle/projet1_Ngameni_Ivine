@@ -1,4 +1,5 @@
 <?php
+
 //Ajouter un produit dans la base de données
 
 function createProduct(array $data)
@@ -82,7 +83,8 @@ function deleteProduct($id)
  }
  function getProductByName( $name)
  {
-     global $conn;  
+     global $conn; 
+      
     // Todo : changer pour requete preparee
      $query = "SELECT * FROM product WHERE name = '$name' ;";
      $result = mysqli_query($conn, $query);
@@ -101,7 +103,21 @@ function deleteProduct($id)
      $data = mysqli_fetch_all($result);
      return $data;
  }
-
+ function getAllProducts()
+ {
+     global $conn;
+     $result = mysqli_query($conn, "SELECT * FROM product");
+ 
+     $data = [];
+     $i = 0;
+     while ($rangeeData = mysqli_fetch_assoc($result)) {
+         $data[$i] = $rangeeData;
+         $i++;
+     };
+ 
+     return $data;
+ }
+ 
 
 
 
