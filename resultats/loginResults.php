@@ -1,13 +1,13 @@
 <a href="../">Accueil</a>
 <h2>Login result</h2>
 <?php
-
+session_start();
 require_once '../functions/validation.php';
 require_once '../functions/userCrud.php';
 require_once '../functions/functions.php';
 require_once '../utils/connexion.php';
 
-var_dump($_POST);
+//var_dump($_POST);
 ?>
 <form method='post' action='accueil.php'>
 
@@ -66,32 +66,52 @@ if (isset($_POST)) {
             'role_id'=>$userData['role_id'],
             'token'=>$token
             ];
-            var_dump("$token");
-
-        if(($_SESSION ['auth']['role_id']==2) or ($_SESSION ['auth']['role_id']==3)){
-                $url = '../accueil/accueil.php';
-                header('Location: ' . $url);
+            //var_dump("$token");
+            // Récupération des informations sur l'administrateur connecté
+            $connectedAdmin = $_SESSION['auth'];
+            if (!isset($_SESSION['auth']) || ($_SESSION['auth']['role_id'] != 1 && $_SESSION['auth']['role_id'] != 2)) {
+              
+                header("Location:../accueil/accueilClients.php");
+                exit();
             }
-
-        }else{
-
-            $_SESSION['login_errors']=[
-                'error_pwd'=>true
-            ];
-           
-            header('location:' .$url);
+            
+            else {
+                $_SESSION['login_errors']=[
+                    'errors_username'=>true
+    
+                ];
+                $url = '../accueil/accueil.php';
+                header('location:'.$url);
+            }
+          
         }
-                
-                
+        
+         // Redirection vers la page de panier si l'utilisateur n'est pas connecté en tant qu'admin ou super-admin
+            else {
+                $_SESSION['login_errors']=[
+                    'errors_username'=>true
+    
+                ];
+                $url = '../accueil/acceuil.php';
+                header('location:'.$url);
+            }
+          
+            
+
         }
-        else {
+         
+    else {
             $_SESSION['login_errors']=[
                 'errors_username'=>true
 
             ];
-            $url = '../accueil/accueil.php';
+            $url = '../pages/SignUp.php';
             header('location:'.$url);
         }
+       
+      
+        
+        
 
     
 ?>
