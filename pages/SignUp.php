@@ -1,6 +1,6 @@
 <?php
 session_start();
-var_dump($_SESSION);
+
 $user_name = '';
 if (isset($_SESSION['signup_form']['user_name'])) {
     $user_name = $_SESSION['signup_form']['user_name'];
@@ -29,10 +29,12 @@ if (isset($_SESSION['signup_form']['lname'])) {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Page d'acceuil</title>
+    <link rel="stylesheet" href="../styles/styleSignup">
 </head>
 <body>
-    <h1> Veuillez enregistrer vos informations</h1>
+   
     <form method="post" action='../resultats/SignUpResults.php'>
+        <
         <fieldset>
         <legend><b>signUp </b></legend>
         <label for="user_name"> <b> User name </b></label>
