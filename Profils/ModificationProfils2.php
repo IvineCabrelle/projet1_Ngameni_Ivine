@@ -11,7 +11,7 @@ var_dump(($_POST["user_name"]));
 $user_name=$_POST["user_name"];
 $verification=true;
 if(isset($user_name)){
-   /// var_dump($_POST['user_name']);
+   
     
     if (!empty($user_name)){
         $recuperationInformation=getUserByUsername($user_name);
