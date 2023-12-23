@@ -25,7 +25,7 @@ require_once("../utils/connexion.php")
         <?php
         // liste  des produits 
         //récupérer les clés du tableau session
-          
+        var_dump($_SESSION['panier']);
         $ids=array_keys($_SESSION['panier']);
           //s'il n'y'a aucune clé dans le tableau
         if(empty($ids)){
@@ -37,12 +37,14 @@ require_once("../utils/connexion.php")
         // liste des produits avec un boucle foreach
       
         while ($product = mysqli_fetch_assoc($products)){
+      
         ?>
+        
         <tr>
         <td><img src="../Images/<?=$product['img_url']?>"></td>
         <td><?=$product['name']?></td>
         <td><?=$product['price']?></td>
-        <td><?= isset($_SESSION['panier'][$product['id']]) && $_SESSION['panier'][$product['id']] !== 0 ? $_SESSION['panier'][$product['id']] : 0 ?></td>
+        <td><?= isset($_SESSION['panier'][intval($product['id'])]) ? $_SESSION['panier'][intval($product['id'])] : 0 ?></td>
         <td><img src="./OIP.jpeg"></td>
         </tr>
         <?php }}?>

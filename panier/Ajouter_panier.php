@@ -31,11 +31,12 @@ if(isset($_GET['id'])){
     else{
         // sinon on ajoute le produit
         $_SESSION['panier']['id']=1;
-       //redirection vers la page indexPanier.php
-       header("Location:./indexPanier.php");
+       
+    }
+    //redirection vers la page indexPanier.php
+    header("Location:./indexPanier.php");
      
 
-    }
 }
 
 ?>

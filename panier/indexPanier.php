@@ -30,6 +30,7 @@ session_start();
         <div class="content">
             <h4 class="name"><?=$row['name']?></h4>
             <h2 class="price"><?=$row['price']?></h2>
+            
             <a href="Ajouter_panier.php ?id=<?=$row['id']?>" class="id_product">Ajouter au panier</a>
         </div>
   
