@@ -1,4 +1,5 @@
 <?php
+session_start();
 // inclure la page de connexion
 require_once "../utils/connexion.php";
 // Vérifier si une session existe

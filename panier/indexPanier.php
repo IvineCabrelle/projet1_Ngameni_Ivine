@@ -9,6 +9,7 @@
   <meta name="viewport" content="width=device=width, initial-scale=1.0" />
   <title>Boutique</title>
   <link rel="stylesheet" href="../styles/stylePanier.css" />
+  <a href="../accueil/accueil.php" class="link">Retour</a>
 </head>
 <body>
   <a href="panier.php" class="link">Panier<span><?php //array_sum($_SESSION['panier'])?></span></a>
