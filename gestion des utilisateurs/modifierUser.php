@@ -20,6 +20,7 @@ if(isset($_POST)){
 
             $url='../accueil/accueil.php';
             header("location" .$url);
+            exit();
         }
     }
 }

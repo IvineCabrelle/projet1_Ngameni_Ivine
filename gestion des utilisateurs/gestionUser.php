@@ -112,7 +112,7 @@ session_start();
     </style>
 
     
-    <!-- Custom styles for this template -->
+  
     <link href="cover.css" rel="stylesheet">
   </head>
   <body class="d-flex h-100 text-center text-bg-dark">
@@ -189,10 +189,10 @@ session_start();
             $userbyName=getUserByUsername($userConnected['user_name']);
             if($_SESSION['auth']['role_id']=1){
                 $users=getAllUsers();
-                //var_dump($users);
+                
             }
             else{
-                //$users=getAllClient();
+               
             }
         
         ?>
