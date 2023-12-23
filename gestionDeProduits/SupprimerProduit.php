@@ -175,55 +175,74 @@ if (isset($_POST)){
           <li class="nav-item">
             <a class="nav-link" href="AjouterProduits.php">Ajouter les produits</a>
           </li>
-          
         </ul>
-       
       </div>
     </div>
   </nav>
 </header>
 
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Product Table</title>
+  <style>
+    /* Add your CSS styles here */
+    table {
+      border-collapse: collapse;
+      width: 100%;
+    }
+    th, td {
+      border: 1px solid #dddddd;
+      text-align: left;
+      padding: 8px;
+    }
+    th {
+      background-color: #f2f2f2;
+    }
+  </style>
+</head>
+<body>
+
 <table>
-  <head>
-    <td>id</td>
-    <td>Nom</td>
-    <td>quantity</td>
-    <td>Price</td>
-    <td>Action</td>
-  </head>
-  <body>
-    <?php 
-    // récupérer tous les produits
-    ?>
+  <thead>
+    <tr>
+      <th>Id</th>
+      <th>Nom</th>
+      <th>Quantity</th>
+      <th>Price</th>
+      <th>Action</th>
+    </tr>
+  </thead>
+  <tbody>
     <?php
+    // Retrieve all products
     $products = getAllProducts();
     foreach ($products as $product) {
-
-      ?>
-      <tr>
-        
-      <td><?php echo $product['id'] ?></td>
-      <td><?php echo $product['name'] ?></td>
-      <td><?php echo $product['quantity'] ?></td>
-      <td><?php echo $product['price'] ?></td>
+    ?>
+    <tr>
+      <td><?php echo $product['id']; ?></td>
+      <td><?php echo $product['name']; ?></td>
+      <td><?php echo $product['quantity']; ?></td>
+      <td><?php echo $product['price']; ?></td>
       <td>
         <form action="" method="post">
-          <input type="text" hidden name="action" value="delete">
-          <input type="text" hidden name="id"value="<?php echo $product['id'] ?>">
-          
+          <input type="hidden" name="action" value="delete">
+          <input type="hidden" name="id" value="<?php echo $product['id']; ?>">
           <button type="submit">Supprimer</button>
         </form>
       </td>
-      </tr>
-      <?php 
-
+    </tr>
+    <?php
     }
-      
     ?>
-    
-  </body>
+  </tbody>
 </table>
 
+</body>
+</html>
    
 
 
