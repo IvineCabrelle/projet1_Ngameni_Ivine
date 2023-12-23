@@ -20,14 +20,7 @@
 
 <link href="/docs/5.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
 
-    <!-- Favicons -->
-<link rel="apple-touch-icon" href="/docs/5.3/assets/img/favicons/apple-touch-icon.png" sizes="180x180">
-<link rel="icon" href="/docs/5.3/assets/img/favicons/favicon-32x32.png" sizes="32x32" type="image/png">
-<link rel="icon" href="/docs/5.3/assets/img/favicons/favicon-16x16.png" sizes="16x16" type="image/png">
-<link rel="manifest" href="/docs/5.3/assets/img/favicons/manifest.json">
-<link rel="mask-icon" href="/docs/5.3/assets/img/favicons/safari-pinned-tab.svg" color="#712cf9">
-<link rel="icon" href="/docs/5.3/assets/img/favicons/favicon.ico">
-<meta name="theme-color" content="#712cf9">
+
 
 
     <style>
@@ -110,7 +103,6 @@
     </style>
 
     
-    <!-- Custom styles for this template -->
     <link href="sticky-footer-navbar.css" rel="stylesheet">
   </head>
   <body class="d-flex flex-column h-100">
@@ -131,22 +123,7 @@
     </svg>
 
     <div class="dropdown position-fixed bottom-0 end-0 mb-3 me-3 bd-mode-toggle">
-      <button class="btn btn-bd-primary py-2 dropdown-toggle d-flex align-items-center"
-              id="bd-theme"
-              type="button"
-              aria-expanded="false"
-              data-bs-toggle="dropdown"
-              aria-label="Toggle theme (auto)">
-        <svg class="bi my-1 theme-icon-active" width="1em" height="1em"><use href="#circle-half"></use></svg>
-        <span class="visually-hidden" id="bd-theme-text">Toggle theme</span>
-      </button>
-      <ul class="dropdown-menu dropdown-menu-end shadow" aria-labelledby="bd-theme-text">
-        <li>
-          <button type="button" class="dropdown-item d-flex align-items-center" data-bs-theme-value="light" aria-pressed="false">
-            <svg class="bi me-2 opacity-50 theme-icon" width="1em" height="1em"><use href="#sun-fill"></use></svg>
-            Light
-            <svg class="bi ms-auto d-none" width="1em" height="1em"><use href="#check2"></use></svg>
-          </button>
+      
         </li>
         <li>
           <button type="button" class="dropdown-item d-flex align-items-center" data-bs-theme-value="dark" aria-pressed="false">
@@ -167,7 +144,7 @@
 
     
 <header>
-  <!-- Fixed navbar -->
+
   <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
     <div class="container-fluid">
       <a class="navbar-brand" href="../panier/indexPanier.php">Panier</a>
@@ -179,9 +156,7 @@
           <li class="nav-item">
             <a class="nav-link active" aria-current="page" href="../deconnection/deconnection.php">Deconnexion</a>
           </li>
-          <!-- <li class="nav-item">
-            <a class="nav-link" href="../panier/indexPanier.php">panier</a>
-          </li> -->
+         
           <a class="navbar-brand" href="../Profils/ModifierProfilsClients.php">Profils</a>
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
@@ -194,27 +169,46 @@
     </div>
   </nav>
 </header>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles.css">
+    <title>Votre Boutique en Ligne</title>
+</head>
+<body>
+    <header>
+        <h1>Bienvenue dans notre Boutique en Ligne</h1>
+    </header>
 
-<!-- Begin page content -->
-<main class="flex-shrink-0">
-  <div class="container">
-    <h1 class="mt-5">Sticky footer with fixed navbar</h1>
-    <p class="lead">Pin a footer to the bottom of the viewport in desktop browsers with this custom HTML and CSS. A fixed navbar has been added with <code class="small">padding-top: 60px;</code> on the <code class="small">main &gt; .container</code>.</p>
-    <p>Back to <a href="/docs/5.3/examples/sticky-footer/">the default sticky footer</a> minus the navbar.</p>
-  </div>
-</main>
+    <section class="featured-products">
+        <h2>Produits Phares</h2>
+        <form action="" class="product">
+        <div class="image_product">
+        <img src="../Images/<?=$row['img_url']?>">
+        </div>
+        
+        <div class="product">
+            <img src="../Images/41fwuBEiDL._SX326_BO1204203200_-1-150x200.jpg" alt="Produit 1">
+            <h3>Centré sur Dieu</h3>
+            <p>Se center sur Dieu est très important.</p>
+            <button><a href="../panier/indexPanier.php" class="link">Acheter</a></button>
+        </div>
+        <div class="product">
+            <img src="../Images/41klCoeJ9xL-225x300.jpg" alt="Produit 1">
+            <h3>Disciple coute que coute</h3>
+            <p>Se center sur Dieu est très important.</p>
+            <button><a href="../panier/indexPanier.php" class="link">Acheter</a></button>
+        </div>
+    </section>
 
-<footer class="footer mt-auto py-3 bg-body-tertiary">
-  <div class="container">
-    <span class="text-body-secondary">Place sticky footer content here.</span>
-  </div>
-</footer>
-<script src="/docs/5.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
-
-
-
-
-
+   
+    <footer>
+        <p>&copy; 2023 Votre Boutique en Ligne. Tous droits réservés.</p>
+    </footer>
+</body>
+</html>
 
     </body>
 </html>
