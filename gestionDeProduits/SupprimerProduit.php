@@ -1,4 +1,16 @@
+<?php
+require_once("../functions/productCrud.php");
+require_once("../utils/connexion.php");
+//si j'ai qq chose dans mn post et que post action est delete :
+if (isset($_POST)){
+  if(isset($_POST['action'])&& $_POST['action']=="delete" ){
+    $delete= deleteProduct($_POST['id']);
+      echo "produit supprimé avec succès";
 
+  }
+}
+
+?>
 <!doctype html>
 <html lang="en" data-bs-theme="auto">
   <head><script src="/docs/5.3/assets/js/color-modes.js"></script>
@@ -171,77 +183,46 @@
   </nav>
 </header>
 
-<div id="Home" class="carousel slide mb-6" data-bs-ride="Home">
-    <div class="carousel-indicators">
-      <button type="button" data-bs-target="#myCarousel" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
-      <button type="button" data-bs-target="#myCarousel" data-bs-slide-to="1" aria-label="Slide 2"></button>
-      <button type="button" data-bs-target="#myCarousel" data-bs-slide-to="2" aria-label="Slide 3"></button>
-    </div>
-    <div class="carousel-inner">
-      <div class="carousel-item active">
-        <svg class="bd-placeholder-img" width="100%" height="100%" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" preserveAspectRatio="xMidYMid slice" focusable="false"><rect width="100%" height="100%" fill="var(--bs-secondary-color)"/></svg>
-        <div class="container">
-          <div class="carousel-caption text-start">
-            <h1>Example headline.</h1>
-            <p class="opacity-75">Some representative placeholder content for the first slide of the carousel.</p>
-            <p><a class="btn btn-lg btn-primary" href="#">Sign up today</a></p>
-          </div>
-        </div>
-      </div>
-      <div class="carousel-item">
-        <svg class="bd-placeholder-img" width="100%" height="100%" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" preserveAspectRatio="xMidYMid slice" focusable="false"><rect width="100%" height="100%" fill="var(--bs-secondary-color)"/></svg>
-        <div class="container">
-          <div class="carousel-caption">
-            <h1>Another example headline.</h1>
-            <p>Some representative placeholder content for the second slide of the carousel.</p>
-            <p><a class="btn btn-lg btn-primary" href="#">Learn more</a></p>
-          </div>
-        </div>
-      </div>
-      <div class="carousel-item">
-        <svg class="bd-placeholder-img" width="100%" height="100%" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" preserveAspectRatio="xMidYMid slice" focusable="false"><rect width="100%" height="100%" fill="var(--bs-secondary-color)"/></svg>
-        <div class="container">
-          <div class="carousel-caption text-end">
-            <h1>One more for good measure.</h1>
-            <p>Some representative placeholder content for the third slide of this carousel.</p>
-            <p><a class="btn btn-lg btn-primary" href="#">Browse gallery</a></p>
-          </div>
-        </div>
-      </div>
-    </div>
-    <button class="carousel-control-prev" type="button" data-bs-target="#myCarousel" data-bs-slide="prev">
-      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-      <span class="visually-hidden">Previous</span>
-    </button>
-    <button class="carousel-control-next" type="button" data-bs-target="#myCarousel" data-bs-slide="next">
-      <span class="carousel-control-next-icon" aria-hidden="true"></span>
-      <span class="visually-hidden">Next</span>
-    </button>
-  </div>
-<form method="post" action="../resultats/ProduitsResults.php">
-  <div class="mb-3">
-    <label for="name" class="form-label">name</label>
-    <input type="text" class="form-control" id="name" name="name" aria-describedby="emailHelp">
+<table>
+  <head>
+    <td>id</td>
+    <td>Nom</td>
+    <td>quantity</td>
+    <td>Price</td>
+    <td>Action</td>
+  </head>
+  <body>
+    <?php 
+    // récupérer tous les produits
+    ?>
+    <?php
+    $products = getAllProducts();
+    foreach ($products as $product) {
+
+      ?>
+      <tr>
+        
+      <td><?php echo $product['id'] ?></td>
+      <td><?php echo $product['name'] ?></td>
+      <td><?php echo $product['quantity'] ?></td>
+      <td><?php echo $product['price'] ?></td>
+      <td>
+        <form action="" method="post">
+          <input type="text" hidden name="action" value="delete">
+          <input type="text" hidden name="id"value="<?php echo $product['id'] ?>">
+          
+          <button type="submit">Supprimer</button>
+        </form>
+      </td>
+      </tr>
+      <?php 
+
+    }
+      
+    ?>
     
-  </div>
-  <div class="mb-3">
-    <label for="quantity" class="form-label">quantite</label>
-    <input type="text" class="form-control" id="quantity" name="quantity">
-  </div>
-  <div class="mb-3">
-    <label for="price" class="form-label">prix</label>
-    <input type="text" class="form-control" id="price" name="price">
-  </div>
-  <div class="mb-3">
-    <label for="img_url" class="form-label">url de l image</label>
-    <input type="text" class="form-control" id="img_url" name="img_url">
-  </div>
-  <div class="mb-3">
-    <label for="description" class="form-label">description</label>
-    <input type="text" class="form-control" id="description" name="description">
-  </div>
-  <button type="submit" class="btn btn-primary">Supprimer le produit</button>
-</form>
+  </body>
+</table>
 
    
 
