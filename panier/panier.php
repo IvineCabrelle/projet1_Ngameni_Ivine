@@ -1,7 +1,15 @@
 <?php
 session_start();
-require_once("../utils/connexion.php")
+require_once("../utils/connexion.php");
+//supprimer produit 
+// si la variable del existe
+ if (isset($_GET['del'])){
+  $id_del=$_GET['del'];
+  //suppression
+  unset($_SESSION['panier']['$id_del']);
+ }
 ?>
+
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -45,11 +53,10 @@ require_once("../utils/connexion.php")
         <td><?=$product['name']?></td>
         <td><?=$product['price']?></td>
         <?php
-        $productId = intval($product['id']);
-        echo isset($_SESSION['panier'][$productId]) ? $_SESSION['panier'][$productId] : 0;
+    
         ?>
         <td><?= isset($_SESSION['panier'][intval($product['id'])]) ? $_SESSION['panier'][intval($product['id'])] : 0 ?></td>
-        <td><img src="./OIP.jpeg"></td>
+        <td><a href="./panier.php? del=<?=$product['id']?>"><img src="./OIP.jpeg"></td>
         </tr>
         <?php
       

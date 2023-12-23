@@ -1,4 +1,5 @@
 <?php
+
 session_start();
 // inclure la page de connexion
 require_once "../utils/connexion.php";
@@ -15,6 +16,7 @@ $_SESSION['panier']=array();
 
 //Récupération de l'id dans le lien
 if(isset($_GET['id'])){
+    
     //Si un id a été envoyé alors:
     $id=$_GET['id'];
     // Vérifier grace a l'id si le produit  existe dans la base de données
