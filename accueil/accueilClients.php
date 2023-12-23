@@ -14,7 +14,7 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
     
-    
+    <link rel="stylesheet" href="../styles/styleAccueil.css">
 
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@docsearch/css@3">
 
@@ -186,19 +186,37 @@
         <h2>Produits Phares</h2>
         <form action="" class="product">
         <div class="image_product">
-        <img src="../Images/<?=$row['img_url']?>">
         </div>
         
         <div class="product">
             <img src="../Images/41fwuBEiDL._SX326_BO1204203200_-1-150x200.jpg" alt="Produit 1">
+            <h3>Disciple coute que coute </h3>
+            <p>Disciple affermi de christ.</p>
+            <button><a href="../panier/indexPanier.php" class="link">Acheter</a></button>
+        <div class="product">
+            <img src="../Images/41klCoeJ9xL-225x300.jpg" alt="Produit 1">
             <h3>Centré sur Dieu</h3>
             <p>Se center sur Dieu est très important.</p>
             <button><a href="../panier/indexPanier.php" class="link">Acheter</a></button>
         </div>
         <div class="product">
-            <img src="../Images/41klCoeJ9xL-225x300.jpg" alt="Produit 1">
-            <h3>Disciple coute que coute</h3>
-            <p>Se center sur Dieu est très important.</p>
+     
+            <img src="../Images/aucun-echec-n-a-besoin-d-etre-final-1-1-150x200.jpg" alt="Produit 1">
+            <h3>Aucun échec n'a besoin d'etre final  </h3>
+            
+            <button><a href="../panier/indexPanier.php" class="link">Acheter</a></button>
+          </div>
+
+          <div class="product">
+            <img src="../Images/Combat-pratique-1-150x200.jpg" alt="Produit 1">
+            <h3>Combat Pratique</h3>
+            
+            <button><a href="../panier/indexPanier.php" class="link">Acheter</a></button>
+        </div>
+        <div class="product">
+            <img src="../Images/Delivrance-1-1-150x200.jpg" alt="Produit 1">
+            <h3>Delivrance du peché de l'aldutère et de la fornication</h3>
+            
             <button><a href="../panier/indexPanier.php" class="link">Acheter</a></button>
         </div>
     </section>
